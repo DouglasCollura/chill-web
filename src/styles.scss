@@ -1,1 +1,294 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$chill-web-primary: mat.define-palette(mat.$indigo-palette);
+$chill-web-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$chill-web-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$chill-web-theme: mat.define-light-theme((
+  color: (
+    primary: $chill-web-primary,
+    accent: $chill-web-accent,
+    warn: $chill-web-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($chill-web-theme);
+
 /* You can add global styles to this file, and also import other style files */
+:root {
+  /** primary **/
+
+  --chill-red:#BA1825;
+  --chill-black:#020202;
+
+}
+
+
+@font-face {
+  font-family: 'Bebas Neue';
+  font-style: normal;
+  font-weight: 100;
+  src: url('./assets/font/BebasNeue-Regular.ttf') format('truetype');
+}
+
+
+@function calculateRem($size) {
+  $remSize: calc($size / 16px);
+  @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+  line-height: calculateRem($size)*1;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  font-weight: 400;
+  font-family: 'Bebas Neue', sans-serif;
+  @include font-size(16px);
+
+  scrollbar-width: thin !important;
+  scrollbar-color: #00BCD4 #090c1073 !important;
+
+  *::-webkit-scrollbar {
+    width: 7px !important;
+    height: 7px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #090c1073;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #00BCD4;
+    border-radius: 20px;
+    // border: 3px solid rgba(69,69,69,.09);
+  }
+}
+
+
+html {
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100%;
+  height: 100%;
+  font-family: "Bebas Neue";
+  @include font-size(15px);
+  position: relative;
+  background-color: white !important;
+}
+
+
+a {
+  text-decoration: none;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0px;
+  padding: 0px;
+  color: white;
+}
+
+h1 {
+  @include font-size(21px)
+}
+
+h2 {
+  @include font-size(19px)
+}
+
+h3 {
+  @include font-size(17px)
+}
+
+h4 {
+  @include font-size(15px)
+}
+
+h5 {
+  @include font-size(13px)
+}
+
+.text-white {
+  color: white !important;
+}
+
+.text-red {
+  color: var(--chill-red) !important;
+}
+
+.text-grey{
+  color: #b1b1b1 !important;
+}
+
+
+/* *
+*   ###################### FUENTES #####################################
+* */
+
+.font-100 {
+  font-weight: 100 !important;
+}
+
+.font-400 {
+  font-weight: 400 !important;
+}
+
+.font-500 {
+  font-weight: 500 !important;
+}
+
+.font-700 {
+  font-weight: 700 !important;
+}
+
+.font-900 {
+  font-weight: 900 !important;
+}
+
+
+
+/* *
+*   ###################### POSITIONS #####################################
+* */
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+
+.justify-items-center {
+  justify-items: center;
+}
+
+.justify-items-start {
+  justify-items: start;
+}
+
+.justify-items-end {
+  justify-items: end;
+}
+
+.align-items-start {
+  align-items: start;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.align-items-end {
+  align-items: end;
+}
+
+
+.justify-self-center {
+  justify-self: center;
+}
+
+.justify-self-end {
+  justify-self: end;
+}
+
+.justify-self-start {
+  justify-self: start;
+}
+
+.justify-self-stretch {
+  justify-self: stretch;
+}
+
+.align-self-start {
+  align-self: start;
+}
+
+.align-self-center {
+  align-self: center;
+}
+
+.align-self-end {
+  align-self: end;
+}
+
+.align-content-start {
+  align-content: start;
+}
+
+.align-content-center {
+  align-content: center;
+}
+
+.align-content-end {
+  align-content: end;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-content-end {
+  justify-content: end;
+}
+
+.justify-content-start {
+  justify-content: start;
+}
+
+
+.grid {
+  display: grid !important;
+}
+
+.gap-10 {
+  gap: 10px;
+}
+
+.gap-20 {
+  gap: 20px;
+}
+
+.gap-30 {
+  gap: 30px;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
