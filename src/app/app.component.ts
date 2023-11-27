@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OrderService } from './services/order.service';
 import * as dayjs from 'dayjs';
+import * as QRCode from 'qrcode-generator';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +17,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private location: Location
   ) { }
 
   ngOnInit() {
@@ -26,17 +29,22 @@ export class AppComponent implements OnInit {
         this.getOrder(e?.order)
       }
     })
+
+    console.log(window.location.host)
   }
 
   order:any = null;
   displayedColumns: string[] = ['Producto', 'Cant.', 'Precio'];
   dataSource = this.order;
+  id:any =null
 
   getOrder(id:any){
     this.orderService.getOrder(id)
     .subscribe((e:any)=>{
-      console.log(e)
-      this.order = e.data
+      this.order = e.data;
+      this.id = id;
+      this.generarQR()
+
     })
   }
 
@@ -54,6 +62,21 @@ export class AppComponent implements OnInit {
     if(!data) return;
     console.log('float ',parseFloat(this.order.tasa))
     return (data / parseFloat(this.order.tasa))
+  }
+
+  generarQR() {
+    const typeNumber = 10; // Tipo de código QR (ajústalo según tus necesidades)
+    const errorCorrectionLevel = 'Q';
+    const qr2 = QRCode(typeNumber, errorCorrectionLevel);
+    const url = `${window.location.host}/?order=${this.id}`;
+    qr2.addData(url);
+    qr2.make();
+
+    const qrImage2:any = qr2.createImgTag(3);
+    let div:any = document.getElementById('qrcode2');
+    div.innerHTML = qrImage2;
+    const imgElement = div.querySelector('img');
+    console.log(imgElement.id = "img")
   }
 
 }

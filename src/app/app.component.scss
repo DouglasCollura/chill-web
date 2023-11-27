@@ -157,3 +157,16 @@ table {
     }
   }
 }
+
+.qrcode-container{
+  flex: 0 0 40%;
+  *{
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+#img{
+  width: 100% !important;
+  height: 100% !important;
+}
