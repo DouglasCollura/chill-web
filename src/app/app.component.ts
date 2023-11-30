@@ -68,7 +68,7 @@ export class AppComponent implements OnInit {
     const typeNumber = 10; // Tipo de código QR (ajústalo según tus necesidades)
     const errorCorrectionLevel = 'Q';
     const qr2 = QRCode(typeNumber, errorCorrectionLevel);
-    const url = `${window.location.host}/?order=${this.id}`;
+    const url = `https://${window.location.host}/?order=${this.id}`;
     qr2.addData(url);
     qr2.make();
 
@@ -80,3 +80,4 @@ export class AppComponent implements OnInit {
   }
 
 }
+``
