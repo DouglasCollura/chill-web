@@ -46,7 +46,7 @@
             <td mat-cell *matCellDef="let element">
               <h4 class="title-table" >{{element.nameProduct}}</h4>
 
-              <div class="content-adds">
+              <div class="content-adds" *ngIf="element?.listSinCon?.length > 0">
                 <h4>Extras:</h4>
                 <div class="item" *ngFor="let item of element?.listSinCon">
                   <h4>{{item.nameProduct}}</h4>
@@ -63,7 +63,7 @@
             <td mat-cell *matCellDef="let element">
               <h4 class="title-table" >{{element.weight}}</h4>
 
-              <div class="content-adds-ex">
+              <div class="content-adds-ex" *ngIf="element?.listSinCon?.length > 0">
                 <div class="item" *ngFor="let item of element?.listSinCon">
                   <h4>{{item.quantity}}</h4>
                 </div>
@@ -78,7 +78,7 @@
             <td mat-cell *matCellDef="let element">
               <h4 class="title-table" >{{element.priceSale}}</h4>
 
-              <div class="content-adds-ex">
+              <div class="content-adds-ex" *ngIf="element?.listSinCon?.length > 0">
                 <div class="item" *ngFor="let item of element?.listSinCon">
                   <h4>{{item.priceSale}}</h4>
                 </div>
