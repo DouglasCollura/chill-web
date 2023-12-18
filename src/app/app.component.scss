@@ -170,3 +170,30 @@ table {
   width: 100% !important;
   height: 100% !important;
 }
+
+
+.content-adds{
+  margin: 10px 0px;
+  display: grid;
+  gap: 3px;
+  *{
+    color: var(--chill-red);
+  }
+
+  .item{
+    margin-left: 5px;
+  }
+
+  &-ex{
+    @extend .content-adds;
+    margin-top: 26px;
+    .item{
+      margin-left: 0px;
+    }
+  }
+}
+
+.title-table{
+  margin-top: 7px;
+  color: black;
+}
